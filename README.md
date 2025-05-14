@@ -42,7 +42,7 @@ Manages the display of onboarding pages with navigation via `TabView`.
 ### Example:
 ```swift
 TabView(selection: $selectedIndex) {
-    ForEach(onBoardingPages2) { page in
+    ForEach(viewModel.onboardingPages) { page in
         OnboardingView(...)
             .tag(page.index)
     }
@@ -65,28 +65,12 @@ OnboardingView(
 
 ---
 
-## 4. **OnboardingButton**
-A custom button that allows advancing or finishing the onboarding.
-
-### Example:
-```swift
-OnboardingButton(action: {
-    if selectedIndex < total {
-        selectedIndex += 1
-    } else {
-        onboarded = true
-    }
-}, buttonDescription: ...)
-```
-
----
-
-## 5. **TabView**
+## 4. **TabView**
 Used to create the paginated experience.
 
 ---
 
-## 6. **@AppStorage**
+## 5. **@AppStorage**
 Stores whether the user has already gone through onboarding.
 
 ### Example:
@@ -96,12 +80,12 @@ Stores whether the user has already gone through onboarding.
 
 ---
 
-## 7. **@Binding**
+## 6. **@Binding**
 Connects the `onboarded` state between views.
 
 ---
 
-## 8. **Custom Indicators**
+## 7. **Custom Indicators**
 Visual circles indicating progress in the onboarding.
 
 ---
@@ -126,35 +110,6 @@ For design creation:
 - **[Mobbin](https://mobbin.com/)** – Repository of UIs from real apps, used for reference of layouts and visual patterns.
 
 ---
-
-
----
-
-## 🧠 Using `.enumerated()` and `.map`
-
-In onboarding, we use a combination of `.enumerated()` with `.map` to dynamically generate an array of pages (`OnBoardingPage`) containing the index of each one. This approach allows us to:
-
-- Track the position of each page in the flow (`index`)
-- Use the index for navigation control and visual identification (like the circular indicators)
-
-### Example:
-```swift
-let onBoardingPages: [OnBoardingPage] = [
-    ("Recharge Your Mind", "A short nap can boost your memory...", "onboardingart1"),
-    ("Sleep is Your Superpower", "Getting a full night’s sleep...", "onboardingart2"),
-    ("Ready to Begin?", "Let’s start your journey...", "onboardingart3")
-]
-.enumerated()
-.map { index, item in
-    OnBoardingPage(index: index, title: item.0, description: item.1, image: item.2)
-}
-```
-
-### Benefits:
-- `.enumerated()` transforms the array to include the index (position) of each item.
-- `.map` allows transforming this array into instances of the `OnBoardingPage` type.
-
-This keeps the code cleaner, safer, and more scalable.
 
 
 ## ✅ Conclusion
