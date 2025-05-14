@@ -8,14 +8,14 @@
 import SwiftUI
 
 @main
-struct OnboardingAppApp: App {
+struct OnboardingApp: App {
     
    @AppStorage("onboarded") private var onboarded = false
     
     var body: some Scene {
         WindowGroup {
             if onboarded{
-                ContentView()
+                HomeView()
                 
             } else {
                 // show multi-step flow
